@@ -6,24 +6,22 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  runApp(MyApp(isLoggedIn: isLoggedIn));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final bool isLoggedIn;
 
-  const MyApp({Key? key, required this.isLoggedIn}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Vehicle',
-      home: isLoggedIn ? const Dashboard() : const MyLogin(),
+      home: const MyLogin(),
     );
   }
 }
