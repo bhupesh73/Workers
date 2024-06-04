@@ -4,9 +4,14 @@ import 'package:http/http.dart' as http;
 
 import '../model/model.dart';
 
-class DataDashboard extends StatelessWidget {
+class DataDashboard extends StatefulWidget {
   const DataDashboard({Key? key}) : super(key: key);
 
+  @override
+  State<DataDashboard> createState() => _DataDashboardState();
+}
+
+class _DataDashboardState extends State<DataDashboard> {
   Future<DashboardDetails> fetchData() async {
     final response =
         await http.get(Uri.parse('https://www.homs.com.np/api/dashboard/5'));

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:loginuicolors/addtask.dart';
+import 'package:loginuicolors/worker_login/page/dashboardata.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -49,7 +50,11 @@ class _DashboardState extends State<Dashboard> {
               leading: Icon(Icons.dashboard),
               title: Text('Dashboard'),
               onTap: () {
-                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            DataDashboard())); // Close the drawer
               },
             ),
             ListTile(
@@ -120,7 +125,8 @@ class _DashboardState extends State<Dashboard> {
                         _sortTasks();
                       });
                     },
-                    items: ['Task Name', 'Priority', 'Location'].map((String value) {
+                    items: ['Task Name', 'Priority', 'Location']
+                        .map((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Text(

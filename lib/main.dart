@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Vehicle',
-      home: const DataDashboard(),
+      home: const Dashboard(),
     );
   }
 }
