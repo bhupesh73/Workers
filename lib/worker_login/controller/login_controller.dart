@@ -53,6 +53,7 @@ class LoginController extends GetxController {
         var responseData = json.decode(jsonString);
 
         print('login successful!');
+        print(responseData);
 
         await saveLoginStatus(true);
 
