@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:loginuicolors/worker_login/page/workassigneddetailpage.dart';
+import 'package:loginuicolors/worker_login/page/workcorrecive.dart';
+import 'package:loginuicolors/worker_login/page/workpreventive.dart';
 import '../model/model.dart';
 
 class DataDashboard extends StatefulWidget {
@@ -50,7 +53,7 @@ class _DataDashboardState extends State<DataDashboard> {
             if (snapshot.hasData) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(
+                child: Column(
                   children: [
                     ElevatedButton(
                       onPressed: () {
@@ -93,7 +96,7 @@ class _DataDashboardState extends State<DataDashboard> {
                           ),
                         );
                       },
-                      child: Text('Work Order correctives'),
+                      child: Text('Work Order Correctives'),
                     ),
                   ],
                 ),
@@ -106,121 +109,6 @@ class _DataDashboardState extends State<DataDashboard> {
           }
           return Center(
             child: CircularProgressIndicator(),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class WorkAssignedDetailsPage extends StatelessWidget {
-  final List<RecentWorkordersPreventive> workorders;
-
-  const WorkAssignedDetailsPage({Key? key, required this.workorders})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Work Assigned Details'),
-      ),
-      body: ListView.builder(
-        itemCount: workorders.length,
-        itemBuilder: (context, index) {
-          var workorder = workorders[index];
-          return ListTile(
-            title: Text('Workorder ID: ${workorder.id}'),
-            subtitle: Text('Status: ${workorder.status}'),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class WorkPreventiveDetailsPage extends StatelessWidget {
-  final List<RecentWorkordersPreventive> workorders;
-
-  const WorkPreventiveDetailsPage({Key? key, required this.workorders})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Work Preventive Details'),
-      ),
-      body: ListView.builder(
-        itemCount: workorders.length,
-        itemBuilder: (context, index) {
-          var workorder = workorders[index];
-          return Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-            child: ListTile(
-              title: Text('Workorder ID: ${workorder.id}'),
-              subtitle: Text('Status: ${workorder.status}'),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class WorkCorrectiveDetailsPage extends StatelessWidget {
-  final List<RecentWorkordersCorrective> workorders;
-
-  const WorkCorrectiveDetailsPage({Key? key, required this.workorders})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Work Corrective Details'),
-      ),
-      body: ListView.builder(
-        itemCount: workorders.length,
-        itemBuilder: (context, index) {
-          var workorder = workorders[index];
-          return ListTile(
-            title: Text('Workorder ID: ${workorder.id}'),
-            subtitle: Text('Status: ${workorder.status}'),
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('Workorder Details'),
-                  content: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('ID: ${workorder.id}'),
-                        Text('Name: ${workorder.woName}'),
-                        Text('Description: ${workorder.description}'),
-                        Text('Priority: ${workorder.priority}'),
-                        Text('Status: ${workorder.status}'),
-                        Text('Scheduled Date: ${workorder.scheduleFirstDate}'),
-                        Text('Crew Size: ${workorder.crewSize}'),
-                        Text(
-                            'Estimated Manpower Hour: ${workorder.estimatedManpowerHour}'),
-                        Text('Safety Measures: ${workorder.safetyMeasures}'),
-                        Text('Created At: ${workorder.createdAt}'),
-                        Text('Updated At: ${workorder.updatedAt}'),
-                        Text('Last Generated At: ${workorder.lastGeneratedAt}'),
-                      ],
-                    ),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text('Close'),
-                    ),
-                  ],
-                ),
-              );
-            },
           );
         },
       ),
